@@ -185,36 +185,6 @@ binary_sensor:
       - script.execute: refresh_led_default
 
   - platform: template
-    name: "Touchfield 2"
-    id: touchfield_2
-    on_press:
-      - if:
-          condition:
-            lambda: "return ${toggle_relay_2_on_touch};"
-          then:
-            - switch.toggle: relay_2
-      - delay: ${button_on_time}
-      - binary_sensor.template.publish:
-          id: touchfield_2
-          state: OFF
-      - script.execute: refresh_led_default
-
-  - platform: template
-    name: "Touchfield 3"
-    id: touchfield_3
-    on_press:
-      - if:
-          condition:
-            lambda: "return ${toggle_relay_3_on_touch};"
-          then:
-            - switch.toggle: relay_3
-      - delay: ${button_on_time}
-      - binary_sensor.template.publish:
-          id: touchfield_3
-          state: OFF
-      - script.execute: refresh_led_default
-
-  - platform: template
     name: "Swipe left"
     id: swipe_left
     on_press:
@@ -259,30 +229,6 @@ switch:
     id: relay_1
     name: "${friendly_name} L1"
     pin: ${relay_1_pin}
-    restore_mode: RESTORE_DEFAULT_OFF
-    on_turn_on:
-      then:
-        - script.execute: refresh_led_default
-    on_turn_off:
-      then:
-        - script.execute: refresh_led_default
-
-  - platform: gpio
-    id: relay_2
-    name: "${friendly_name} L2"
-    pin: ${relay_2_pin}
-    restore_mode: RESTORE_DEFAULT_OFF
-    on_turn_on:
-      then:
-        - script.execute: refresh_led_default
-    on_turn_off:
-      then:
-        - script.execute: refresh_led_default
-
-  - platform: gpio
-    id: relay_3
-    name: "${friendly_name} L3"
-    pin: ${relay_3_pin}
     restore_mode: RESTORE_DEFAULT_OFF
     on_turn_on:
       then:
